@@ -10,7 +10,7 @@ for lignes in plateau:
     print(lignes)
 
    
-Partie Antoine:
+#Partie Antoine:
     
 import tkinter as tk
 import random as rd
@@ -31,10 +31,10 @@ fen = tk.Tk()
 fen.title("Jeu taquin")
 
 # position possible dans la grille
-pos = [(0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1)]
+pos = [(0,0),(0,1),(0,2),(0,3),(1,0),(1,1),(1,2),(1,3),(2,0),(2,1),(2,2),(2,3),(3,0),(3,1),(3,2)]
 
 # création des boutons sauf le bouton0
-for i in range(8):
+for i in range(15):
     row, column = rd.choice(pos) # on choisit les coordonnées parmis "pos"
     pos.remove((row, column))  # Enlever les coordonnées choisies de la liste des positions restantes
     bouton = tk.Button(fen, bg = "dark goldenrod", text=f"{i+1}", anchor = "center", height = 3,
@@ -45,7 +45,7 @@ for i in range(8):
 # création du bouton0 aux coordonnées (2,2)
 bouton0 = tk.Button(fen, bg = "floral white", anchor = "center", height = 3, width = 7,
                      font = ("helvitica", "20"))
-bouton0.grid(row = 2, column = 2)
+bouton0.grid(row = 3, column = 3)
 
 # affichage de la fenêtre
 fen.mainloop()
