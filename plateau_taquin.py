@@ -15,6 +15,22 @@ for lignes in plateau:
 import tkinter as tk
 import random as rd
 
+def verif(b):
+    # Vérifie si le bouton cliqué est adjacent au bouton0
+    pos3 = bouton0.grid_info()
+    pos4 = b.grid_info()
+    if (pos4["row"] == pos3["row"] + 1) and (pos4["column"] == pos3["column"]) :
+        echange_pos(b)
+
+    elif (pos4["row"] == pos3["row"] - 1) and (pos4["column"] == pos3["column"]) :
+        echange_pos(b)
+
+    elif (pos4["column"] == pos3["column"] + 1) and (pos4["row"] == pos3["row"]) :
+        echange_pos(b)
+
+    elif (pos4["column"] == pos3["column"] - 1) and (pos4["row"] == pos3["row"]) :
+        echange_pos(b)
+
 # fonction qui permet d'échanger la position du bouton cliqué avec le bouton0
 def echange_pos(b):
 
@@ -40,7 +56,7 @@ for i in range(15):
     bouton = tk.Button(fen, bg = "dark goldenrod", text=f"{i+1}", anchor = "center", height = 3,
                         width = 7, font = ("helvitica", "20")) # création des boutons et de leur texte
     bouton.grid(row=row, column=column) # position des boutons
-    bouton.config(command=lambda b=bouton: echange_pos(b)) # commande des boutons qui renvoie à la fonction "echange_pos"
+    bouton.config(command=lambda b=bouton: verif(b)) # commande des boutons qui renvoie à la fonction "echange_pos"
 
 # création du bouton0 aux coordonnées (2,2)
 bouton0 = tk.Button(fen, bg = "floral white", anchor = "center", height = 3, width = 7,
