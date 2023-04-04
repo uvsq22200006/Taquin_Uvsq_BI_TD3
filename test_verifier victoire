@@ -1,0 +1,5 @@
+def verifier_victoire(plateau):
+    nombres = [str(i) for i in range(1, 16)]
+    nombres.append(" ")
+    plateau_resolu = [str(case) for row in plateau for case in row]
+    return plateau_resolu == nombres
