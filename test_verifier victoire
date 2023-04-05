@@ -3,3 +3,10 @@ def verifier_victoire(plateau):
     nombres.append(" ")
     plateau_resolu = [str(case) for row in plateau for case in row]
     return plateau_resolu == nombres
+
+autre:
+def verifier_victoire():
+    nb_de_plateau = [num for row in plateau for num in row]
+    if nb_de_plateau == list(range(1, 16)) + [" "]:
+        print("Bravo! Gagné!")
+        fen.destroy()
