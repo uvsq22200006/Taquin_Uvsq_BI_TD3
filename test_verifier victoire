@@ -14,3 +14,69 @@ def verifier_victoire():
         
         
         #peut-etre mettre cette fonction a la fin de chaque mouvement?
+
+
+import tkinter as tk
+import random as rd
+
+valeurs = list(range(1, 16))
+rd.shuffle(valeurs)
+
+plateau = [[valeurs.pop() if valeurs else " " for j in range(4)] for i in range(4)]
+plateau[3][3] = " "
+
+# check if the player has won the game
+def verifier_victoire():
+    nb_de_plateau = [num for row in plateau for num in row]
+    if nb_de_plateau == list(range(1, 16)) + [" "]:
+        print("Bravo! Gagné!")
+        fen.destroy()
+
+# Vérifie si le bouton cliqué est adjacent au bouton0 et échange leur position
+def verif(b):
+    pos3 = bouton0.grid_info()
+    pos4 = b.grid_info()
+    if (pos4["row"] == pos3["row"] + 1) and (pos4["column"] == pos3["column"]):
+        echange_pos(b)
+
+    elif (pos4["row"] == pos3["row"] - 1) and (pos4["column"] == pos3["column"]):
+        echange_pos(b)
+
+    elif (pos4["column"] == pos3["column"] + 1) and (pos4["row"] == pos3["row"]):
+        echange_pos(b)
+
+    elif (pos4["column"] == pos3["column"] - 1) and (pos4["row"] == pos3["row"]):
+        echange_pos(b)
+        
+    verifier_victoire()
+
+# Échange la position du bouton cliqué avec le bouton0
+def echange_pos(b):
+    pos1 = bouton0.grid_info()
+    pos2 = b.grid_info()
+
+    bouton0.grid(row=pos2['row'], column=pos2['column'])
+    b.grid(row=pos1['row'], column=pos1['column'])
+
+    verifier_victoire()
+
+fen = tk.Tk()
+fen.title("Jeu taquin")
+
+pos = [(0,0),(0,1),(0,2),(0,3),(1,0),(1,1),(1,2),(1,3),(2,0),(2,1),(2,2),(2,3),(3,0),(3,1),(3,2)]
+
+# Crée les boutons sauf le bouton0
+for i in range(15):
+    row, column = rd.choice(pos)
+    pos.remove((row, column))
+    bouton = tk.Button(fen, bg = "dark goldenrod", text=f"{plateau[i//4][i%4]}", anchor = "center", height = 3,
+                        width = 7, font = ("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+
+# Crée le bouton0 aux coordonnées (3,3)
+bouton0 = tk.Button(fen, bg = "floral white", anchor = "center", height = 3, width = 7,
+                     font = ("helvitica", "20"))
+bouton0.grid(row = 3, column = 3)
+
+fen.mainloop()
