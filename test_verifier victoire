@@ -10,3 +10,7 @@ def verifier_victoire():
     if nb_de_plateau == list(range(1, 16)) + [" "]:
         print("Bravo! Gagné!")
         fen.destroy()
+        
+        
+        
+        #peut-etre mettre cette fonction a la fin de chaque mouvement?
