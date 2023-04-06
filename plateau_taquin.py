@@ -51,7 +51,7 @@ def win(boutons):
         (boutons[13].grid_info()["row"] == 3 and boutons[13].grid_info()["column"] == 1) and
         (boutons[14].grid_info()["row"] == 3 and boutons[14].grid_info()["column"] == 2)):
         
-        label = tk.Label(fen, text="Vous avez gagnez!", fg = "red2", font = ("helvetica", "30"))
+        label = tk.Label(fen, text="Bravo! Victoire!", fg = "red2", font = ("helvetica", "30"))
         label.grid(row=4, column=0, columnspan=4)
 
 
