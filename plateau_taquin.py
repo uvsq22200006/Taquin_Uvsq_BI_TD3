@@ -1,5 +1,5 @@
 #Partie Antoine:
-    
+   
 import tkinter as tk
 import random as rd
 
@@ -66,7 +66,7 @@ boutons = []
 for i in range(15):
     row, column = rd.choice(pos)
     pos.remove((row, column))
-    bouton = tk.Button(fen, bg="dark goldenrod", text=f"{i+1}", anchor="center", height=3,
+    bouton = tk.Button(fen, bg="dark goldenrod", text= (i+1), anchor="center", height=3,
                         width=7, font=("helvitica", "20"))
     bouton.grid(row=row, column=column)
     bouton.config(command=lambda b=bouton: verif(b))
