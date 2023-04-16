@@ -84,6 +84,22 @@ import tkinter as tk
 import random as rd
 
 def Jouer():
+    
+    def verif(b):
+        # Vérifie si le bouton cliqué est adjacent au bouton0
+        pos3 = bouton0.grid_info()
+        pos4 = b.grid_info()
+        if (pos4["row"] == pos3["row"] + 1) and (pos4["column"] == pos3["column"]) :
+            echange_pos(b)
+
+        elif (pos4["row"] == pos3["row"] - 1) and (pos4["column"] == pos3["column"]) :
+            echange_pos(b)
+
+        elif (pos4["column"] == pos3["column"] + 1) and (pos4["row"] == pos3["row"]) :
+            echange_pos(b)
+
+        elif (pos4["column"] == pos3["column"] - 1) and (pos4["row"] == pos3["row"]) :
+            echange_pos(b)
 
     def echange_pos(b):
         # récupère les informations de placement des widgets
@@ -133,7 +149,7 @@ def Jouer():
         bouton = tk.Button(fen, bg="dark goldenrod", text= (i+1), anchor="center", height=3,
                             width=7, font=("helvitica", "20"))
         bouton.grid(row=row, column=column)
-        bouton.config(command=lambda b=bouton: echange_pos(b))
+        bouton.config(command=lambda b=bouton: verif(b))
         boutons.append(bouton)
 
     # création du bouton0
