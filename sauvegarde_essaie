@@ -1,0 +1,216 @@
+# Antoine
+
+import tkinter as tk
+import random as rd
+
+def verif(b):
+    # Vérifie si le bouton cliqué est adjacent au bouton0
+    pos3 = bouton0.grid_info()
+    pos4 = b.grid_info()
+    if (pos4["row"] == pos3["row"] + 1) and (pos4["column"] == pos3["column"]) :
+        echange_pos(b)
+
+    elif (pos4["row"] == pos3["row"] - 1) and (pos4["column"] == pos3["column"]) :
+        echange_pos(b)
+
+    elif (pos4["column"] == pos3["column"] + 1) and (pos4["row"] == pos3["row"]) :
+        echange_pos(b)
+
+    elif (pos4["column"] == pos3["column"] - 1) and (pos4["row"] == pos3["row"]) :
+        echange_pos(b)
+
+
+def echange_pos(b):
+    # récupère les informations de placement des widgets
+    pos1 = bouton0.grid_info()
+    pos2 = b.grid_info()
+
+    # échange les positions des widgets
+    bouton0.grid(row=pos2["row"], column=pos2["column"])
+    b.grid(row=pos1["row"], column=pos1["column"])
+
+    win(boutons)
+
+
+# renvoie un message si le joueur gagne
+def win(boutons):
+    if ((boutons[0].grid_info()["row"] == 0 and boutons[0].grid_info()["column"] == 0) and 
+        (boutons[1].grid_info()["row"] == 0 and boutons[1].grid_info()["column"] == 1) and
+        (boutons[2].grid_info()["row"] == 0 and boutons[2].grid_info()["column"] == 2) and 
+        (boutons[3].grid_info()["row"] == 1 and boutons[3].grid_info()["column"] == 0) and 
+        (boutons[4].grid_info()["row"] == 1 and boutons[4].grid_info()["column"] == 1) and 
+        (boutons[5].grid_info()["row"] == 1 and boutons[5].grid_info()["column"] == 2) and 
+        (boutons[6].grid_info()["row"] == 2 and boutons[6].grid_info()["column"] == 0) and 
+        (boutons[7].grid_info()["row"] == 2 and boutons[7].grid_info()["column"] == 1)):
+        
+        label = tk.Label(fen, text="Bravo! Victoire!", fg = "red2", font = ("helvetica", "30"))
+        label.grid(row=3, column=0, columnspan=3)
+
+bt_sv = []
+def sauvegarder(boutons,bouton0):
+    
+    b1 = boutons[0].grid_info()
+    b2 = boutons[1].grid_info()
+    b3 = boutons[2].grid_info()
+    b4 = boutons[3].grid_info()
+    b5 = boutons[4].grid_info()
+    b6 = boutons[5].grid_info()
+    b7 = boutons[6].grid_info()
+    b8 = boutons[7].grid_info()
+    b0 = bouton0.grid_info()
+
+    bt_sv.append(b1)
+    bt_sv.append(b2)
+    bt_sv.append(b3)
+    bt_sv.append(b4)
+    bt_sv.append(b5)
+    bt_sv.append(b6)
+    bt_sv.append(b7)
+    bt_sv.append(b8)
+    bt_sv.append(b0)
+
+bt1_sv = []
+bt2_sv = []
+def importer(bt_sv):
+    
+    a1 , b1 = bt_sv[0]["row"], bt_sv[0]["column"]
+    bt1_sv.append(a1)
+    bt2_sv.append(b1)
+
+    a2 , b2 = bt_sv[1]["row"], bt_sv[1]["column"]
+    bt1_sv.append(a2)
+    bt2_sv.append(b2)
+
+    a3 , b3 = bt_sv[2]["row"], bt_sv[2]["column"]
+    bt1_sv.append(a3)
+    bt2_sv.append(b3)
+
+    a4 , b4 = bt_sv[3]["row"], bt_sv[3]["column"]
+    bt1_sv.append(a4)
+    bt2_sv.append(b4)
+
+    a5 , b5 = bt_sv[4]["row"], bt_sv[4]["column"]
+    bt1_sv.append(a5)
+    bt2_sv.append(b5)
+
+    a6 , b6 = bt_sv[5]["row"], bt_sv[5]["column"]
+    bt1_sv.append(a6)
+    bt2_sv.append(b6)
+
+    a7 , b7 = bt_sv[6]["row"], bt_sv[6]["column"]
+    bt1_sv.append(a7)
+    bt2_sv.append(b7)
+
+    a8 , b8 = bt_sv[7]["row"], bt_sv[7]["column"]
+    bt1_sv.append(a8)
+    bt2_sv.append(b8)
+
+    a0 , b0 = bt_sv[8]["row"], bt_sv[8]["column"]
+    bt1_sv.append(a0)
+    bt2_sv.append(b0)
+
+
+    boutons = []
+    
+    row = bt1_sv[0]
+    column = bt2_sv[0]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "1", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[1]
+    column = bt2_sv[1]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "2", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[2]
+    column = bt2_sv[2]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "3", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[3]
+    column = bt2_sv[3]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "4", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[4]
+    column = bt2_sv[4]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "5", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[5]
+    column = bt2_sv[5]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "6", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[6]
+    column = bt2_sv[6]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "7", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+    row = bt1_sv[7]
+    column = bt2_sv[7]   
+    bouton = tk.Button(fen, bg="dark goldenrod", text= "8", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+
+
+    boutons0 = tk.Button(fen, bg="floral white", anchor="center", height=3,
+                                width=7, font=("helvitica", "20"))
+    boutons0.grid(row=a0, column=b0)
+
+    
+
+#création de la fenêtre
+fen = tk.Tk()
+fen.title("Jeu taquin")
+
+# création des boutons à des places aléatoire
+pos = [(0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1)]
+
+boutons = []
+for i in range(8):
+    row, column = rd.choice(pos)
+    pos.remove((row, column))
+    bouton = tk.Button(fen, bg="dark goldenrod", text= (i+1), anchor="center", height=3,
+                        width=7, font=("helvitica", "20"))
+    bouton.grid(row=row, column=column)
+    bouton.config(command=lambda b=bouton: verif(b))
+    boutons.append(bouton)
+
+# création du bouton0
+bouton0 = tk.Button(fen, bg="floral white", height=3, width=7, font=("helvitica", "20"))
+bouton0.grid(row=2, column=2)
+
+buton = tk.Button(fen, bg="green", text= "sauvegarder", font=("helvitica", "20"))
+buton.grid(row=0, column=4)
+buton.config(command=lambda : sauvegarder(boutons, bouton0))
+
+buton1 = tk.Button(fen, bg="green", text= "importer", font=("helvitica", "20"))
+buton1.grid(row=1, column=4)
+buton1.config(command=lambda : importer(bt_sv))
+
+fen.mainloop()
